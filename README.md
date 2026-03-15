@@ -129,7 +129,7 @@ Edit `backend/config.py` to:
 
 ## Disclaimer
 
-⚠️ **This app is for educational and entertainment purposes only.**
+**This app is for educational and entertainment purposes only.**
 
 - Past performance does not guarantee future results
 - Always gamble responsibly
