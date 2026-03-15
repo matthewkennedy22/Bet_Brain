@@ -1,0 +1,8 @@
+cd betting-analyzer/backend
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python main.py
+
+cd betting-analyzer/frontend
+npm install
+npm run dev

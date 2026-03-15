@@ -1,0 +1,50 @@
+# Dependencies & runtimes (do not commit – reinstall with npm install / pip install -r requirements.txt)
+node_modules/
+venv/
+.venv/
+env/
+
+# Build & cache
+.next/
+build/
+dist/
+out/
+.cache/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+
+# Environment and secrets (use .env.example as template)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Local SQLite DB (recreated on first run)
+*.db
+backend/betting.db
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Optional: uncomment if you want to exclude the duplicate BetBrain2.0 folder
+# BetBrain2.0/

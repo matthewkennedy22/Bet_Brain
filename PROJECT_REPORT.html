@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PROJECT_REPORT.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="betbrain-ai-powered-sports-betting-analyzer">BetBrain: AI-Powered Sports Betting Analyzer</h1>
+<h2 id="technical-project-report">Technical Project Report</h2>
+<hr>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>BetBrain is a full-stack web application that aggregates real-time sports betting odds from multiple sportsbooks and applies a proprietary algorithm to identify high-value betting opportunities. The system analyzes odds across major sports leagues, incorporates news sentiment analysis, and calculates expected value (EV) and confidence scores to surface the most promising bets each day.</p>
+<p><strong>Key Technologies:</strong> Python, FastAPI, Next.js, React, TypeScript, SQLite, REST APIs</p>
+<p><strong>Development Approach:</strong> AI-assisted development using Cursor IDE with iterative refinement</p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#system-architecture">System Architecture</a></li>
+<li><a href="#algorithm-deep-dive">Algorithm Deep Dive</a></li>
+<li><a href="#data-sources">Data Sources</a></li>
+<li><a href="#technical-implementation">Technical Implementation</a></li>
+<li><a href="#future-enhancements">Future Enhancements</a></li>
+</ol>
+<hr>
+<h2 id="project-overview">Project Overview</h2>
+<h3 id="problem-statement">Problem Statement</h3>
+<p>Sports bettors face several challenges:</p>
+<ul>
+<li>Manually comparing odds across multiple sportsbooks is time-consuming</li>
+<li>Identifying true value bets requires complex probability calculations</li>
+<li>News and injury information isn't systematically factored into betting decisions</li>
+<li>No centralized tool combines odds aggregation with analytical recommendations</li>
+</ul>
+<h3 id="solution">Solution</h3>
+<p>BetBrain addresses these challenges by:</p>
+<ol>
+<li><strong>Aggregating odds</strong> from multiple sportsbooks in real-time</li>
+<li><strong>Calculating expected value</strong> for every betting opportunity</li>
+<li><strong>Analyzing news sentiment</strong> to factor in market-moving information</li>
+<li><strong>Generating confidence scores</strong> to rank betting opportunities</li>
+<li><strong>Presenting picks</strong> through an intuitive, modern dashboard</li>
+</ol>
+<h3 id="supported-sports">Supported Sports</h3>
+<table>
+<thead>
+<tr>
+<th>Sport</th>
+<th>League</th>
+<th>API Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Football</td>
+<td>NFL</td>
+<td><code>americanfootball_nfl</code></td>
+</tr>
+<tr>
+<td>Basketball</td>
+<td>NBA</td>
+<td><code>basketball_nba</code></td>
+</tr>
+<tr>
+<td>Baseball</td>
+<td>MLB</td>
+<td><code>baseball_mlb</code></td>
+</tr>
+<tr>
+<td>Hockey</td>
+<td>NHL</td>
+<td><code>icehockey_nhl</code></td>
+</tr>
+<tr>
+<td>Soccer</td>
+<td>English Premier League</td>
+<td><code>soccer_epl</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="system-architecture">System Architecture</h2>
+<h3 id="high-level-architecture">High-Level Architecture</h3>
+<pre class="hljs"><code><div>┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│   Odds API      │────▶│   FastAPI       │────▶│   Next.js       │
+│   (External)    │     │   Backend       │     │   Frontend      │
+│                 │     │                 │     │                 │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+┌─────────────────┐              │
+│                 │              │
+│   News RSS      │──────────────┤
+│   Feeds         │              │
+│                 │              │
+└─────────────────┘              │
+                                 ▼
+                        ┌─────────────────┐
+                        │                 │
+                        │   SQLite        │
+                        │   Database      │
+                        │                 │
+                        └─────────────────┘
+</div></code></pre>
+<h3 id="backend-components">Backend Components</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main.py</code></td>
+<td>FastAPI application with REST endpoints</td>
+</tr>
+<tr>
+<td><code>algorithm.py</code></td>
+<td>Core betting analysis algorithm</td>
+</tr>
+<tr>
+<td><code>data_fetcher.py</code></td>
+<td>Odds API and news RSS integration</td>
+</tr>
+<tr>
+<td><code>models.py</code></td>
+<td>SQLAlchemy database models</td>
+</tr>
+<tr>
+<td><code>database.py</code></td>
+<td>Async database configuration</td>
+</tr>
+<tr>
+<td><code>config.py</code></td>
+<td>Environment and settings management</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-components">Frontend Components</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/page.tsx</code></td>
+<td>Main dashboard with picks display</td>
+</tr>
+<tr>
+<td><code>app/layout.tsx</code></td>
+<td>Application layout and metadata</td>
+</tr>
+<tr>
+<td><code>app/globals.css</code></td>
+<td>Dark theme styling with CSS variables</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="algorithm-deep-dive">Algorithm Deep Dive</h2>
+<h3 id="overview">Overview</h3>
+<p>The BetBrain algorithm generates a <strong>confidence score (0-100)</strong> for each potential bet by analyzing five key factors. Only bets meeting minimum thresholds for both Expected Value (≥2%) and Confidence (≥60%) are surfaced to users.</p>
+<h3 id="confidence-score-components">Confidence Score Components</h3>
+<p>The confidence score is calculated as the sum of five weighted components:</p>
+<h4 id="1-expected-value-score-0-35-points--35-weight">1. Expected Value Score (0-35 points) — 35% Weight</h4>
+<pre class="hljs"><code><div>ev_score = min(<span class="hljs-number">35</span>, max(<span class="hljs-number">0</span>, ev * <span class="hljs-number">3.5</span>))
+</div></code></pre>
+<p><strong>What it measures:</strong> The mathematical edge of the bet</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Expected Value (EV) represents the average profit/loss per bet if placed infinitely</li>
+<li>Formula: <code>EV = (Win Probability × Profit) - (Loss Probability × Stake)</code></li>
+<li>The EV percentage is multiplied by 3.5 to scale to 35 points max</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>+10% EV → 35 points (maximum)</li>
+<li>+5% EV → 17.5 points</li>
+<li>+2% EV → 7 points</li>
+</ul>
+<h4 id="2-line-consensus-score-0-25-points--25-weight">2. Line Consensus Score (0-25 points) — 25% Weight</h4>
+<pre class="hljs"><code><div>consensus_score = max(<span class="hljs-number">0</span>, <span class="hljs-number">25</span> - line_spread)
+</div></code></pre>
+<p><strong>What it measures:</strong> Agreement between sportsbooks on the odds</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Calculates the standard deviation of odds across all bookmakers</li>
+<li>Lower spread = books agree = more accurate line = higher confidence</li>
+<li>If spread exceeds 25, score becomes 0</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>All books at -110 (spread = 0) → 25 points</li>
+<li>Books range -105 to -115 (spread = 5) → 20 points</li>
+<li>Books range -100 to -130 (spread = 15) → 10 points</li>
+</ul>
+<h4 id="3-market-efficiency-score-0-20-points--20-weight">3. Market Efficiency Score (0-20 points) — 20% Weight</h4>
+<pre class="hljs"><code><div>efficiency = <span class="hljs-number">20</span> - abs(win_prob - <span class="hljs-number">0.5</span>) * <span class="hljs-number">40</span>
+</div></code></pre>
+<p><strong>What it measures:</strong> How liquid/efficient the betting market is</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Markets closer to 50/50 are typically more efficient (more betting action)</li>
+<li>More efficient markets = more reliable probability estimates</li>
+<li>Heavily favored or underdog lines may have less reliable data</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>50% win probability → 20 points (maximum)</li>
+<li>60% win probability → 16 points</li>
+<li>75% win probability → 10 points</li>
+</ul>
+<h4 id="4-sentiment-score-0-10-points--10-weight">4. Sentiment Score (0-10 points) — 10% Weight</h4>
+<pre class="hljs"><code><div>sentiment_score = sentiment_strength * <span class="hljs-number">10</span>
+</div></code></pre>
+<p><strong>What it measures:</strong> News sentiment confirmation</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Analyzes sports news headlines using Natural Language Processing (TextBlob)</li>
+<li>Sentiment ranges from -1 (negative) to +1 (positive)</li>
+<li>Strong sentiment in either direction adds confidence that market may not have fully adjusted</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Strong positive news (0.8 sentiment) → 8 points</li>
+<li>Neutral news (0.2 sentiment) → 2 points</li>
+<li>No relevant news (0 sentiment) → 0 points</li>
+</ul>
+<h4 id="5-win-probability-bonus-0-10-points--10-weight">5. Win Probability Bonus (0-10 points) — 10% Weight</h4>
+<pre class="hljs"><code><div>prob_score = win_prob * <span class="hljs-number">10</span> <span class="hljs-keyword">if</span> win_prob &gt; <span class="hljs-number">0.5</span> <span class="hljs-keyword">else</span> (<span class="hljs-number">1</span> - win_prob) * <span class="hljs-number">5</span>
+</div></code></pre>
+<p><strong>What it measures:</strong> Baseline likelihood of winning</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Favorites (&gt;50% win probability) receive up to 10 bonus points</li>
+<li>Underdogs receive up to 5 bonus points</li>
+<li>Provides slight bias toward safer bets</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>70% favorite → 7 points</li>
+<li>55% slight favorite → 5.5 points</li>
+<li>40% underdog → 3 points</li>
+</ul>
+<h3 id="final-confidence-calculation">Final Confidence Calculation</h3>
+<pre class="hljs"><code><div>total = ev_score + consensus_score + efficiency + sentiment_score + prob_score
+confidence = min(<span class="hljs-number">100</span>, max(<span class="hljs-number">0</span>, total))  <span class="hljs-comment"># Clamped between 0-100</span>
+</div></code></pre>
+<h3 id="complete-example">Complete Example</h3>
+<p><strong>Scenario:</strong> Kansas City Chiefs -3.5 spread at -108</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Value</th>
+<th>Calculation</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expected Value</td>
+<td>+6.2%</td>
+<td>6.2 × 3.5</td>
+<td>21.7</td>
+</tr>
+<tr>
+<td>Line Spread</td>
+<td>2.5</td>
+<td>25 - 2.5</td>
+<td>22.5</td>
+</tr>
+<tr>
+<td>Win Probability</td>
+<td>58%</td>
+<td>20 - |0.58-0.5| × 40</td>
+<td>16.8</td>
+</tr>
+<tr>
+<td>Sentiment</td>
+<td>0.35</td>
+<td>0.35 × 10</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>Win Prob Bonus</td>
+<td>58%</td>
+<td>0.58 × 10</td>
+<td>5.8</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td></td>
+<td></td>
+<td><strong>70.3</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result:</strong> 70.3% confidence score — This pick would be surfaced to users.</p>
+<hr>
+<h2 id="data-sources">Data Sources</h2>
+<h3 id="the-odds-api">The Odds API</h3>
+<p><strong>Provider:</strong> <a href="https://the-odds-api.com">the-odds-api.com</a></p>
+<p><strong>Data Retrieved:</strong></p>
+<ul>
+<li>Real-time odds from 10+ US sportsbooks</li>
+<li>Moneyline, spread, and totals markets</li>
+<li>Game start times and team information</li>
+</ul>
+<p><strong>Sportsbooks Included:</strong></p>
+<ul>
+<li>DraftKings</li>
+<li>FanDuel</li>
+<li>BetMGM</li>
+<li>Caesars</li>
+<li>PointsBet</li>
+<li>And others...</li>
+</ul>
+<h3 id="news-rss-feeds">News RSS Feeds</h3>
+<p><strong>Sources:</strong></p>
+<ul>
+<li>ESPN NFL News</li>
+<li>ESPN NBA News</li>
+<li>ESPN MLB News</li>
+</ul>
+<p><strong>Processing:</strong></p>
+<ul>
+<li>Headlines parsed via feedparser library</li>
+<li>Sentiment analysis via TextBlob NLP</li>
+<li>Team mentions extracted and mapped to games</li>
+</ul>
+<hr>
+<h2 id="technical-implementation">Technical Implementation</h2>
+<h3 id="backend-stack">Backend Stack</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>3.9+</td>
+<td>Core language</td>
+</tr>
+<tr>
+<td>FastAPI</td>
+<td>0.115.0</td>
+<td>REST API framework</td>
+</tr>
+<tr>
+<td>SQLAlchemy</td>
+<td>2.0.35</td>
+<td>Async ORM</td>
+</tr>
+<tr>
+<td>aiosqlite</td>
+<td>0.20.0</td>
+<td>Async SQLite driver</td>
+</tr>
+<tr>
+<td>Pandas</td>
+<td>2.0.3</td>
+<td>Data manipulation</td>
+</tr>
+<tr>
+<td>NumPy</td>
+<td>1.26.4</td>
+<td>Numerical calculations</td>
+</tr>
+<tr>
+<td>TextBlob</td>
+<td>0.18.0</td>
+<td>Sentiment analysis</td>
+</tr>
+<tr>
+<td>httpx</td>
+<td>0.27.0</td>
+<td>Async HTTP client</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-stack">Frontend Stack</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Next.js</td>
+<td>14.0.3</td>
+<td>React framework</td>
+</tr>
+<tr>
+<td>React</td>
+<td>18.2.0</td>
+<td>UI library</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>5.3.2</td>
+<td>Type safety</td>
+</tr>
+<tr>
+<td>Lucide React</td>
+<td>0.294.0</td>
+<td>Icons</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-endpoints">API Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/picks</code></td>
+<td>Get today's top betting picks</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/games</code></td>
+<td>Get all games with odds</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/games/{sport}</code></td>
+<td>Get games for specific sport</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/news</code></td>
+<td>Get sports news with sentiment</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sports</code></td>
+<td>List supported sports</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/refresh</code></td>
+<td>Force refresh all data</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/analyze/{game_id}</code></td>
+<td>Detailed analysis for a game</td>
+</tr>
+</tbody>
+</table>
+<h3 id="query-parameters">Query Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sport</code></td>
+<td>string</td>
+<td>all</td>
+<td>Filter by sport key</td>
+</tr>
+<tr>
+<td><code>min_confidence</code></td>
+<td>float</td>
+<td>60.0</td>
+<td>Minimum confidence threshold</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>10</td>
+<td>Maximum picks to return</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="database-schema">Database Schema</h2>
+<h3 id="games-table">Games Table</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> games (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">VARCHAR</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    sport <span class="hljs-built_in">VARCHAR</span>,
+    home_team <span class="hljs-built_in">VARCHAR</span>,
+    away_team <span class="hljs-built_in">VARCHAR</span>,
+    commence_time DATETIME,
+    odds_data <span class="hljs-keyword">JSON</span>,
+    created_at DATETIME
+);
+</div></code></pre>
+<h3 id="bet-picks-table">Bet Picks Table</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> bet_picks (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">INTEGER</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTOINCREMENT,
+    game_id <span class="hljs-built_in">VARCHAR</span>,
+    sport <span class="hljs-built_in">VARCHAR</span>,
+    pick_type <span class="hljs-built_in">VARCHAR</span>,
+    pick <span class="hljs-built_in">VARCHAR</span>,
+    odds <span class="hljs-built_in">INTEGER</span>,
+    confidence <span class="hljs-built_in">FLOAT</span>,
+    ev_score <span class="hljs-built_in">FLOAT</span>,
+    reasoning <span class="hljs-built_in">VARCHAR</span>,
+    created_at DATETIME,
+    <span class="hljs-keyword">result</span> <span class="hljs-built_in">VARCHAR</span>
+);
+</div></code></pre>
+<h3 id="news-table">News Table</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> news (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">INTEGER</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTOINCREMENT,
+    title <span class="hljs-built_in">VARCHAR</span>,
+    summary <span class="hljs-built_in">VARCHAR</span>,
+    <span class="hljs-keyword">source</span> <span class="hljs-built_in">VARCHAR</span>,
+    sport <span class="hljs-built_in">VARCHAR</span>,
+    sentiment <span class="hljs-built_in">FLOAT</span>,
+    teams_mentioned <span class="hljs-keyword">JSON</span>,
+    published_at DATETIME,
+    created_at DATETIME
+);
+</div></code></pre>
+<hr>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<h3 id="short-term-improvements">Short-term Improvements</h3>
+<ol>
+<li><strong>Historical Tracking</strong> — Log all picks and track win/loss record over time</li>
+<li><strong>User Accounts</strong> — Allow users to save preferences and track their bets</li>
+<li><strong>Push Notifications</strong> — Alert users when high-confidence picks emerge</li>
+<li><strong>More Sports</strong> — Add college football, college basketball, UFC, tennis</li>
+</ol>
+<h3 id="long-term-vision">Long-term Vision</h3>
+<ol>
+<li><strong>Machine Learning Model</strong> — Replace heuristic algorithm with trained ML model using historical betting data</li>
+<li><strong>Injury Integration</strong> — Pull real-time injury reports and factor into probability estimates</li>
+<li><strong>Sharp Money Indicators</strong> — Track line movements to identify professional bettor activity</li>
+<li><strong>Bankroll Management</strong> — Suggest bet sizing based on Kelly Criterion</li>
+<li><strong>Mobile App</strong> — Native iOS/Android applications</li>
+</ol>
+<hr>
+<h2 id="development-process">Development Process</h2>
+<h3 id="ai-assisted-development">AI-Assisted Development</h3>
+<p>This project was built using <strong>Cursor IDE</strong> with AI assistance, demonstrating modern AI-augmented software development practices:</p>
+<ol>
+<li><strong>Architecture Planning</strong> — AI helped design the system architecture and component structure</li>
+<li><strong>Code Generation</strong> — Core algorithm and API endpoints were generated with AI assistance</li>
+<li><strong>Debugging</strong> — AI helped diagnose and resolve dependency and runtime issues</li>
+<li><strong>Documentation</strong> — This report was generated with AI assistance</li>
+</ol>
+<h3 id="development-timeline">Development Timeline</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Duration</th>
+<th>Activities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planning</td>
+<td>1 hour</td>
+<td>Requirements, architecture design</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>2 hours</td>
+<td>API, algorithm, data fetching</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>2 hours</td>
+<td>Dashboard UI, styling</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>1 hour</td>
+<td>Testing, debugging, deployment</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>BetBrain demonstrates a practical application of data aggregation, algorithmic analysis, and modern web development. The confidence scoring algorithm provides a transparent, explainable method for ranking betting opportunities, while the clean architecture allows for future enhancements and scaling.</p>
+<p>The project showcases proficiency in:</p>
+<ul>
+<li>Full-stack web development (Python + React)</li>
+<li>REST API design</li>
+<li>Algorithm development</li>
+<li>Data analysis and aggregation</li>
+<li>AI-assisted development workflows</li>
+</ul>
+<hr>
+<h2 id="appendix-running-the-application">Appendix: Running the Application</h2>
+<h3 id="backend-setup">Backend Setup</h3>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> betting-analyzer/backend
+python -m venv venv
+<span class="hljs-built_in">source</span> venv/bin/activate
+pip install -r requirements.txt
+<span class="hljs-comment"># Create .env file with ODDS_API_KEY</span>
+python main.py
+</div></code></pre>
+<h3 id="frontend-setup">Frontend Setup</h3>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> betting-analyzer/frontend
+npm install
+npm run dev
+</div></code></pre>
+<h3 id="access-points">Access Points</h3>
+<ul>
+<li><strong>Frontend Dashboard:</strong> http://localhost:3000</li>
+<li><strong>Backend API:</strong> http://localhost:8000</li>
+<li><strong>API Documentation:</strong> http://localhost:8000/docs</li>
+</ul>
+<hr>
+<p><em>Report generated for BetBrain v1.0.0</em>
+<em>Development assisted by Cursor AI</em></p>
+
+</body>
+</html>
