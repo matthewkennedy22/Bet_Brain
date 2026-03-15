@@ -1,5 +1,7 @@
 # BetBrain - AI Sports Betting Analyzer
 
+**By [@matthewkennedy22](https://github.com/matthewkennedy22)**
+
 An AI-powered app that aggregates sports statistics, news, and betting odds to identify high-value betting opportunities.
 
 ![BetBrain Dashboard](https://via.placeholder.com/800x400/0a0e17/10b981?text=BetBrain+Dashboard)
@@ -134,7 +136,15 @@ Edit `backend/config.py` to:
 - Check local laws regarding sports betting
 - Never bet more than you can afford to lose
 
+## Pushing to a repo
+
+The repo is set up so only source and config are tracked; dependencies and build artifacts are ignored (see `.gitignore`). This keeps the repo small and under typical size limits.
+
+- **Excluded:** `node_modules/`, `venv/`, `.next/`, `.env`, `*.db`, and other generated/cache files.
+- **Included:** All app code, `package.json`, `requirements.txt`, and `backend/.env.example` (copy to `.env` and add your API key).
+
+After cloning, run backend and frontend setup from the Quick Start section above.
+
 ## License
 
 MIT
-
